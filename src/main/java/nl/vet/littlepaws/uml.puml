@@ -1,0 +1,60 @@
+@startuml
+class Praktijk {
+    naw
+}
+class Persoon {
+    naam
+    naw
+}
+
+class Huisdier {
+    naam
+    ras
+    gewicht
+    geboortedatum
+    eigenaar
+}
+class Afspraak {
+    datum
+    tijd
+    duur
+    kosten
+}
+
+class Behandeling {
+    datum
+    kosten
+    tijd
+}
+
+class Medicatie {
+    naam
+    dosering
+    duur
+}
+
+class Vacinatie {
+    naam
+    geldig tot
+}
+
+class Onderzoek {
+    naam
+    kosten
+}
+
+class Rol {
+    naam
+}
+
+Praktijk -- Persoon
+Persoon -- Huisdier
+Persoon -- Rol
+Huisdier -- Afspraak
+Behandeling -- Afspraak
+Praktijk -- Onderzoek
+Praktijk -- Behandeling
+Medicatie -- Behandeling
+Onderzoek -- Behandeling
+Behandeling -- Vacinatie
+@enduml
