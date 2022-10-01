@@ -6,17 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pet {
+public class Pet extends Base {
 
-    @Id
-    @GeneratedValue
-    private long Id;
     private String name;
     private String typeOfAnimal;
     private char gender;
@@ -27,6 +25,6 @@ public class Pet {
     @ManyToOne()
     private Client client;
 
-    @ManyToMany()
-    private Appointment appointment;
+    @OneToMany(mappedBy = "pet")
+    private List<Appointment> appointment;
 }

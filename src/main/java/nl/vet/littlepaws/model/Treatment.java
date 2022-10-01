@@ -10,11 +10,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Treatment {
+public class Treatment extends Base {
 
-    @Id
-    @GeneratedValue
-    private long Id;
     private TreatmentType type;
     private int duration;
     private double price;
@@ -23,7 +20,7 @@ public class Treatment {
     @ManyToOne()
     private VeterinaryPractice veterinaryPractice;
 
-    @OneToMany(mappedBy = "treatment")
+    @ManyToMany(mappedBy = "treatment")
     private List<Appointment> appointments;
 
 }

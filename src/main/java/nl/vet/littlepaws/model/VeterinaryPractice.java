@@ -15,10 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class VeterinaryPractice extends UserData {
 
-    @Id
-    @GeneratedValue
-    private long Id;
-    private String nameClinic;
+    private String namePractice;
     private int emergencyPhoneNumber;
 
     // relation:

@@ -1,33 +1,29 @@
 package nl.vet.littlepaws.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@SuperBuilder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Appointment {
+public class Appointment extends Base {
 
-    @Id
-    @GeneratedValue
-    private long Id;
     private LocalDateTime dateAndTime;
 
     // relations:
     @ManyToOne()
     private VeterinaryPractice veterinaryPractice;
 
-    @ManyToOne()
-    private Treatment treatment;
-
     @ManyToMany()
+    private List<Treatment> treatment;
+
+    @ManyToOne()
     private Pet pet;
-    //waarom/hoe container??
 }
