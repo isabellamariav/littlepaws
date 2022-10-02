@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Treatment extends Base {
 
+    @Enumerated(EnumType.ORDINAL)
     private TreatmentType type;
     private int duration;
     private double price;

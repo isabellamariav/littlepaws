@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentMapper {
+    //aggregator/mapper Dto - Entity
     public static AppointmentDto toDto(Appointment appointment) {
 
         AppointmentDto appointmentDto = AppointmentDto.builder()

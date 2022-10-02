@@ -27,6 +27,7 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
+    //request type
     @GetMapping(value = "")
     public ResponseEntity<Iterable<AppointmentDto>> getAllAppointments() {
         Iterable<Appointment> appointments = appointmentService.getAll();
@@ -39,6 +40,7 @@ public class AppointmentController {
         return ResponseEntity.ok(AppointmentMapper.toDto(appointment));
     }
 
+    //add
     @PostMapping(value = "")
     public ResponseEntity<Object> createAppointment(@Validated @RequestBody AppointmentDto appointmentDto, BindingResult br) {
         StringBuilder sb = new StringBuilder();
@@ -57,26 +59,21 @@ public class AppointmentController {
         }
     }
 
-//    @PutMapping(value = "/{id}")
-//    public ResponseEntity<Object> updateAppointment(@Validated @RequestBody AppointmentDto appointmentDto, @PathVariable Long id, BindingResult br){
-//
-//        StringBuilder sb = new StringBuilder();
-//        if(br.hasErrors()){
-//            for(FieldError error : br.getFieldErrors()){
-//                sb.append(error.getField() + ": ");
-//                sb.append(error.getDefaultMessage());
-//                sb.append("\n");
-//            }
-//            return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
-//        } else {
-//            appointmentService.updateAppointment(apppointmentDto, id);
-//            return ResponseEntity.noContent().build();
-//        }
-//    }
-//
-//    @GetMapping(value = "/author/{author}")
-//    public ResponseEntity<AppointmentDto> getByAuthor(@PathVariable String author){
-//        AppointmentDto bookDto = appointmentService.getByAuthor(author);
-//        return ResponseEntity.ok(appointmentDto);
-//    }
+    //uptdate
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateAppointment(@Validated @RequestBody AppointmentDto appointmentDto, @PathVariable Long id, BindingResult br){
+
+        StringBuilder sb = new StringBuilder();
+        if(br.hasErrors()){
+            for(FieldError error : br.getFieldErrors()){
+                sb.append(error.getField() + ": ");
+                sb.append(error.getDefaultMessage());
+                sb.append("\n");
+            }
+            return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
+        } else {
+            appointmentService.update(AppointmentMapper.toEntity(appointmentDto), id);
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

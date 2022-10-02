@@ -13,9 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Client extends UserData {
 
-    @Id
-    @GeneratedValue
-    private long Id;
     private LocalDate dateOfBirth;
 
     // relations:

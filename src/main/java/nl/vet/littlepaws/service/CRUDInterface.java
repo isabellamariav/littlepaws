@@ -7,7 +7,7 @@ public interface CRUDInterface<T>{
 
     Optional<T> create(T dto);
     Optional<T> read(Long id);
-    Optional<T> update(T dto);
+    Optional<T> update(T dto, Long id);
     void delete(T dto);
     Iterable<T> getAll();
 

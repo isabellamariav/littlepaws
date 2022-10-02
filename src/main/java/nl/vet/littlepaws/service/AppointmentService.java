@@ -28,12 +28,12 @@ public class AppointmentService implements CRUDInterface<Appointment> {
     }
 
     @Override
-    public Optional<Appointment> update(Appointment dto) {
-        Appointment appointment = appointmentRepository.findById(dto.getId()).get();
-        appointment.setPet(dto.getPet());
-        appointment.setTreatment(dto.getTreatment());
-        appointment.setVeterinaryPractice(dto.getVeterinaryPractice());
-        return Optional.of(appointmentRepository.save(dto));
+    public Optional<Appointment> update(Appointment updateAppointment, Long id) {
+        Appointment appointment = appointmentRepository.findById(id).get();
+        appointment.setPet(updateAppointment.getPet());
+        appointment.setTreatment(updateAppointment.getTreatment());
+        appointment.setVeterinaryPractice(updateAppointment.getVeterinaryPractice());
+        return Optional.of(appointmentRepository.save(updateAppointment));
     }
 
     @Override
