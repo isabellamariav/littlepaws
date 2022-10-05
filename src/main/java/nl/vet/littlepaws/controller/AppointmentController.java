@@ -76,4 +76,6 @@ public class AppointmentController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    private String test;
 }
