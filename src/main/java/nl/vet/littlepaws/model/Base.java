@@ -18,6 +18,7 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class Base {
+
     @Id
     @GeneratedValue
     private long id;

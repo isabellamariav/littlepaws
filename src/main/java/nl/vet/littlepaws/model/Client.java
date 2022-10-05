@@ -1,6 +1,7 @@
 package nl.vet.littlepaws.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Client extends UserData {
