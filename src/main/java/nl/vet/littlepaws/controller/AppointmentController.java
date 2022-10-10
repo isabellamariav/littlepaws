@@ -59,7 +59,7 @@ public class AppointmentController {
         }
     }
 
-    //uptdate
+    //update
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateAppointment(@Validated @RequestBody AppointmentDto appointmentDto, @PathVariable Long id, BindingResult br){
 

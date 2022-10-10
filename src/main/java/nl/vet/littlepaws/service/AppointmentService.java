@@ -5,7 +5,6 @@ import nl.vet.littlepaws.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +33,11 @@ public class AppointmentService implements CRUDInterface<Appointment> {
         appointment.setTreatment(updateAppointment.getTreatment());
         appointment.setVeterinaryPractice(updateAppointment.getVeterinaryPractice());
         return Optional.of(appointmentRepository.save(updateAppointment));
+    }
+
+    @Override
+    public Optional<Appointment> save(Appointment dto) {
+        return Optional.empty();
     }
 
     @Override
