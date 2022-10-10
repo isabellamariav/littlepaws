@@ -4,6 +4,7 @@ package nl.vet.littlepaws.service;
 import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.model.Client;
 import nl.vet.littlepaws.model.Pet;
+import nl.vet.littlepaws.model.Treatment;
 import nl.vet.littlepaws.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -56,6 +57,11 @@ public class PetService implements CRUDInterface<Pet> {
 
     @Override
     public Optional<Pet> save(Pet dto) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Treatment> save(Treatment dto) {
         return Optional.empty();
     }
 }
