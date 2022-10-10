@@ -10,10 +10,12 @@ public class BaseSeeder {
     @Bean
     CommandLineRunner commandLineRunner(
             ClientSeeder clientSeeder,
+            PetSeeder petseeder,
             TreatmentSeeder treatmentSeeder,
             VeterinaryPracticeSeeder veterinaryPracticeSeeder) {
         return arts -> {
             clientSeeder.run();
+            petseeder.run();
             treatmentSeeder.run();
             veterinaryPracticeSeeder.run();
         } ;
