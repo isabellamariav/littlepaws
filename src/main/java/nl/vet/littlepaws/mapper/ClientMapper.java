@@ -1,8 +1,6 @@
 package nl.vet.littlepaws.mapper;
 
-import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.ClientDto;
-import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.model.Client;
 
 import java.util.ArrayList;

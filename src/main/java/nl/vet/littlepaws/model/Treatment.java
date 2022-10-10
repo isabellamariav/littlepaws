@@ -25,6 +25,5 @@ public class Treatment extends Base {
     private VeterinaryPractice veterinaryPractice;
 
     @ManyToMany(mappedBy = "treatment")
-    private List<Client> appointments;
-
+    private List<Appointment> appointments;
 }

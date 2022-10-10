@@ -1,6 +1,8 @@
 package nl.vet.littlepaws.service;
 
 import nl.vet.littlepaws.model.Appointment;
+import nl.vet.littlepaws.model.Client;
+import nl.vet.littlepaws.model.Pet;
 import nl.vet.littlepaws.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +49,15 @@ public class AppointmentService implements CRUDInterface<Appointment> {
     @Override
     public Iterable<Appointment> getAll() {
         return appointmentRepository.findAll();
+    }
+
+    @Override
+    public Optional<Client> save(Client dto) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Pet> save(Pet dto) {
+        return Optional.empty();
     }
 }
