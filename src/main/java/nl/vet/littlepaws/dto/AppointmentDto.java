@@ -26,5 +26,4 @@ public class AppointmentDto {
     private List<Treatment> treatment;
 
     private Pet pet;
-
 }

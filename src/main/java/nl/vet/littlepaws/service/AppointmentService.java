@@ -13,7 +13,6 @@ public class AppointmentService implements CRUDInterface<Appointment> {
     @Autowired
     AppointmentRepository appointmentRepository;
     public AppointmentService(){
-
     }
 
     @Override

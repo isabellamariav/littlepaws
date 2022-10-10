@@ -25,7 +25,8 @@ public class AppointmentMapper {
 
     public static Appointment toEntity(AppointmentDto appointmentDto) {
 
-        Appointment appointment = Appointment.builder().id(appointmentDto.getId()).build();
+        Appointment appointment = Appointment.builder()
+                .id(appointmentDto.getId()).build();
         return appointment;
     }
 

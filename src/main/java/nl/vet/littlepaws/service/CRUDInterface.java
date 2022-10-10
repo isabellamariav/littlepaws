@@ -1,6 +1,7 @@
 package nl.vet.littlepaws.service;
 
 import nl.vet.littlepaws.model.Appointment;
+import nl.vet.littlepaws.model.Client;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,5 +16,7 @@ public interface CRUDInterface<T>{
 
     void delete(T dto);
     Iterable<T> getAll();
+
+    Optional<Client> save(Client dto);
 
 }
