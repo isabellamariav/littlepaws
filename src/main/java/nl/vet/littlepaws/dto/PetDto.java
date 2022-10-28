@@ -15,12 +15,13 @@ public class PetDto {
 
     @NotNull
     private long id;
-
-    private Client client;
-
-    private VeterinaryPractice veterinaryPractice;
-
-    private List<Appointment> appointments;
-
-    private List<Treatment> treatment;
+    //From Pet
+    private String name;
+    private String typeOfAnimal;
+    private char gender;
+    private int age;
+    private double weight;
+    //From relations
+    private ClientDto clientDto;
+    private List<AppointmentDto> appointmentDtos;
 }

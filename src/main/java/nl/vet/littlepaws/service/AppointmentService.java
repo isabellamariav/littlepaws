@@ -36,12 +36,6 @@ public class AppointmentService implements CRUDInterface<Appointment> {
         appointment.setVeterinaryPractice(updateAppointment.getVeterinaryPractice());
         return Optional.of(appointmentRepository.save(updateAppointment));
     }
-
-    @Override
-    public Optional<Appointment> save(Appointment dto) {
-        return Optional.empty();
-    }
-
     @Override
     public void delete(Appointment dto) {
         appointmentRepository.delete(dto);
@@ -50,20 +44,5 @@ public class AppointmentService implements CRUDInterface<Appointment> {
     @Override
     public Iterable<Appointment> getAll() {
         return appointmentRepository.findAll();
-    }
-
-    @Override
-    public Optional<Client> save(Client dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Pet> save(Pet dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Treatment> save(Treatment dto) {
-        return Optional.empty();
     }
 }

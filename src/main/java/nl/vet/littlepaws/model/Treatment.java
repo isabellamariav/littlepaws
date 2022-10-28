@@ -21,7 +21,7 @@ public class Treatment extends Base {
     private double price;
 
     // relation:
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     private VeterinaryPractice veterinaryPractice;
 
     @ManyToMany(mappedBy = "treatment")

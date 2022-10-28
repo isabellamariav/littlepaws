@@ -35,27 +35,6 @@ public class ClientService implements CRUDInterface<Client> {
         client.setVeterinaryPractice(updateClient.getVeterinaryPractice());
         return Optional.of(clientRepository.save(updateClient));
     }
-
-    @Override
-    public Optional<Appointment> save(Appointment dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Client> save(Client dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Pet> save(Pet dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Treatment> save(Treatment dto) {
-        return Optional.empty();
-    }
-
     @Override
     public void delete(Client dto) {
         clientRepository.delete(dto);

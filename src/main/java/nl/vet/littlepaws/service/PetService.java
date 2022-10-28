@@ -17,7 +17,8 @@ public class PetService implements CRUDInterface<Pet> {
 
     @Autowired
     PetRepository petRepository;
-    public PetService(){
+
+    public PetService() {
     }
 
     @Override
@@ -36,11 +37,6 @@ public class PetService implements CRUDInterface<Pet> {
     }
 
     @Override
-    public Optional<Appointment> save(Appointment dto) {
-        return Optional.empty();
-    }
-
-    @Override
     public void delete(Pet dto) {
         petRepository.delete(dto);
     }
@@ -48,20 +44,5 @@ public class PetService implements CRUDInterface<Pet> {
     @Override
     public Iterable<Pet> getAll() {
         return petRepository.findAll();
-    }
-
-    @Override
-    public Optional<Client> save(Client dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Pet> save(Pet dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Treatment> save(Treatment dto) {
-        return Optional.empty();
     }
 }

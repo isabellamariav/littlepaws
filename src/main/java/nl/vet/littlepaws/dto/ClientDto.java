@@ -7,6 +7,7 @@ import nl.vet.littlepaws.model.Pet;
 import nl.vet.littlepaws.model.Treatment;
 import nl.vet.littlepaws.model.VeterinaryPractice;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -19,11 +20,16 @@ public class ClientDto {
     @NotNull
     private long id;
 
-    private VeterinaryPractice veterinaryPractice;
+    private LocalDate dateOfBirth;
 
-    private Pet pet;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String postalCode;
+    private String city;
+    private int phoneNumber;
+    private String email;
 
-    private List<Appointment> appointments;
-
-    private List<Treatment> treatments;
+    private VeterinaryPracticeDto veterinaryPracticeDto;
+    private PetDto petDto;
 }

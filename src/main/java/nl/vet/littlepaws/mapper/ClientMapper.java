@@ -1,39 +1,74 @@
 package nl.vet.littlepaws.mapper;
 
+import lombok.AllArgsConstructor;
+import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.ClientDto;
+import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.model.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientMapper {
+@AllArgsConstructor
+public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
 
-    public static ClientDto toDto(Client client) {
+    PetMapper petMapper;
+    VeterinaryPracticeMapper veterinaryPracticeMapper;
 
-        ClientDto clientDto = ClientDto.builder()
-                .id(client.getId()).build();
-        return clientDto;
+    @Override
+    public ClientDto toDto(Client client) {
+        return ClientDto
+                .builder()
+                .id(client.getId())
+                .dateOfBirth(client.getDateOfBirth())
+                .firstName(client.getFirstName())
+                .lastName(client.getLastName())
+                .address(client.getAddress())
+                .postalCode(client.getPostalCode())
+                .city(client.getCity())
+                .phoneNumber(client.getPhoneNumber())
+                .email(client.getEmail())
+
+                .veterinaryPracticeDto(veterinaryPracticeMapper)
+                .petDto(PetMapper.toDto(client.getPets()))
+
+                .build();
     }
 
-    public static List<ClientDto> toDtoList(Iterable<Client> clients) {
-        List<ClientDto> clientDtos = new ArrayList<>();
+    @Override
+    public List<ClientDto> toDtoList(Iterable<Client> clients) {
+        List<ClientDto> clientsDto = new ArrayList<>();
         for (Client client : clients) {
-            clientDtos.add(ClientMapper.toDto(client));
+            clientsDto.add(toDto(client));
         }
-        return clientDtos;
+        return clientsDto;
     }
 
-    public static Client toEntity(ClientDto clientDto) {
+    @Override
+    public Client toEntity(ClientDto clientDto) {
+        return Client
+                .builder()
+                .id(clientDto.getId())
+                .dateOfBirth(clientDto.getDateOfBirth())
+                .firstName(clientDto.getFirstName())
+                .lastName(clientDto.getLastName())
+                .address(clientDto.getAddress())
+                .postalCode(clientDto.getPostalCode())
+                .city(clientDto.getCity())
+                .phoneNumber(clientDto.getPhoneNumber())
+                .email(clientDto.getEmail())
 
-        Client client = Client.builder()
-                .id(clientDto.getId()).build();
-        return client;
+                .veterinaryPractice(veterinaryPracticeMapper)
+                .pet(PetMapper.toEntity(clientDto.getPetDto()))
+
+                .build();
     }
 
-    public static List<Client> toEntityList(Iterable<ClientDto> clientDtos) {
+    @Override
+    public List<Client> toEntityList(Iterable<ClientDto> clientDtos) {
         List<Client> clients = new ArrayList<>();
         for (ClientDto clientDto : clientDtos) {
-            clients.add(ClientMapper.toEntity(clientDto));
+            clients.add(toEntity(clientDto));
         }
         return clients;
     }

@@ -1,39 +1,65 @@
 package nl.vet.littlepaws.mapper;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.TreatmentDto;
 import nl.vet.littlepaws.model.Treatment;
+import nl.vet.littlepaws.repository.TreatmentRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreatmentMapper {
+@AllArgsConstructor
+public class TreatmentMapper implements BaseMapperInterface<Treatment, TreatmentDto> {
 
-    public static TreatmentDto toDto(Treatment treatment) {
+    private TreatmentMapper treatmentMapper;
+    private VeterinaryPracticeMapper veterinaryPracticeMapper;
+    private TreatmentRepository treatmentRepository;
 
-        TreatmentDto treatmentDto = TreatmentDto.builder()
-                .id(treatment.getId()).build();
-        return treatmentDto;
+    @Override
+    public TreatmentDto toDto(Treatment treatment) {
+        return TreatmentDto
+                .builder()
+                .id(treatment.getId())
+                .type(treatment.getType())
+                .name(treatment.getName())
+                .duration(treatment.getDuration())
+                .price(treatment.getPrice())
+
+                .veterinaryPracticeDto(veterinaryPracticeMapper.toDto(treatment.getVeterinaryPractice()))
+                .treatmentsDto(toDtoList(treatmentRepository.findAll()))
+
+                .build();
     }
 
-    public static List<TreatmentDto> toDtoList(Iterable<Treatment> treatments) {
-        List<TreatmentDto> treatmentDtos = new ArrayList<>();
+    @Override
+    public List<TreatmentDto> toDtoList(Iterable<Treatment> treatments) {
+        List<TreatmentDto> treatmentsDto = new ArrayList<>();
         for (Treatment treatment : treatments) {
-            treatmentDtos.add(TreatmentMapper.toDto(treatment));
+            treatmentsDto.add(toDto(treatment));
         }
-        return treatmentDtos;
+        return treatmentsDto;
     }
 
-    public static Treatment toEntity(TreatmentDto treatmentDto) {
+    @Override
+    public Treatment toEntity(TreatmentDto treatmentDto) {
+        return Treatment
+                .builder()
+                .id(treatmentDto.getId())
+                .type()
+                .name(treatmentDto.getName())
+                .duration(treatmentDto.getDuration())
+                .price(treatmentDto.getPrice())
 
-        Treatment treatment = Treatment.builder()
-                .id(treatmentDto.getId()).build();
-        return treatment;
+                .veterinaryPractice(veterinaryPracticeMapper.toEntity(treatmentDto.getVeterinaryPracticeDto()))
+                .treatments(toEntityList(treatmentRepository.findAll()))
+                .build();
     }
 
-    public static List<Treatment> toEntityList(Iterable<TreatmentDto> treatmentDtos) {
+    @Override
+    public List<Treatment> toEntityList(Iterable<TreatmentDto> treatmentDtos) {
         List<Treatment> treatments = new ArrayList<>();
         for (TreatmentDto treatmentDto : treatmentDtos) {
-            treatments.add(TreatmentMapper.toEntity(treatmentDto));
+            treatments.add(toEntity(treatmentDto));
         }
         return treatments;
     }

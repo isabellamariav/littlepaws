@@ -16,9 +16,8 @@ public class BaseSeeder {
         return arts -> {
             clientSeeder.run();
             petseeder.run();
-            treatmentSeeder.run();
             veterinaryPracticeSeeder.run();
+            treatmentSeeder.run();
         } ;
     }
-
 }

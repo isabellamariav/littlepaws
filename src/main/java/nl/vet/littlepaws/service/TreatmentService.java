@@ -37,16 +37,6 @@ public class TreatmentService implements CRUDInterface<Treatment> {
     }
 
     @Override
-    public Optional<Appointment> save(Appointment dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Treatment> save(Treatment dto) {
-        return Optional.empty();
-    }
-
-    @Override
     public void delete(Treatment dto) {
         treatmentRepository.delete(dto);
     }
@@ -54,15 +44,5 @@ public class TreatmentService implements CRUDInterface<Treatment> {
     @Override
     public Iterable<Treatment> getAll() {
         return treatmentRepository.findAll();
-    }
-
-    @Override
-    public Optional<Client> save(Client dto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Pet> save(Pet dto) {
-        return Optional.empty();
     }
 }
