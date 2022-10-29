@@ -32,7 +32,7 @@ public class AppointmentService implements CRUDInterface<Appointment> {
     public Optional<Appointment> update(Appointment updateAppointment, Long id) {
         Appointment appointment = appointmentRepository.findById(id).get();
         appointment.setPet(updateAppointment.getPet());
-        appointment.setTreatment(updateAppointment.getTreatment());
+        appointment.setTreatments(updateAppointment.getTreatments());
         appointment.setVeterinaryPractice(updateAppointment.getVeterinaryPractice());
         return Optional.of(appointmentRepository.save(updateAppointment));
     }

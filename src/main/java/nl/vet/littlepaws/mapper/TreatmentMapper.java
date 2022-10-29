@@ -11,9 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 public class TreatmentMapper implements BaseMapperInterface<Treatment, TreatmentDto> {
 
-    private TreatmentMapper treatmentMapper;
-    private VeterinaryPracticeMapper veterinaryPracticeMapper;
-    private TreatmentRepository treatmentRepository;
+    TreatmentMapper treatmentMapper;
+    VeterinaryPracticeMapper veterinaryPracticeMapper;
+    TreatmentRepository treatmentRepository;
 
     @Override
     public TreatmentDto toDto(Treatment treatment) {
@@ -25,6 +25,7 @@ public class TreatmentMapper implements BaseMapperInterface<Treatment, Treatment
                 .duration(treatment.getDuration())
                 .price(treatment.getPrice())
 
+                .treatmentsDto(treatmentMapper.toDtoList(treatment.getType()))
                 .veterinaryPracticeDto(veterinaryPracticeMapper.toDto(treatment.getVeterinaryPractice()))
                 .treatmentsDto(toDtoList(treatmentRepository.findAll()))
 

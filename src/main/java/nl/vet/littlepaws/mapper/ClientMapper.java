@@ -30,7 +30,7 @@ public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
                 .email(client.getEmail())
 
                 .veterinaryPracticeDto(veterinaryPracticeMapper)
-                .petDto(PetMapper.toDto(client.getPets()))
+                .petDto(petMapper.toDto(client.getPets()))
 
                 .build();
     }
@@ -59,7 +59,7 @@ public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
                 .email(clientDto.getEmail())
 
                 .veterinaryPractice(veterinaryPracticeMapper)
-                .pet(PetMapper.toEntity(clientDto.getPetDto()))
+                .pet(petMapper.toEntity(clientDto.getPetDto()))
 
                 .build();
     }

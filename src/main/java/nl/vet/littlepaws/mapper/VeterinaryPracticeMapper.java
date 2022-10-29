@@ -10,10 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 public class VeterinaryPracticeMapper implements BaseMapperInterface<VeterinaryPractice, VeterinaryPracticeDto> {
 
-private VeterinaryPracticeMapper veterinaryPracticeMapper;
-private ClientMapper clientMapper;
-private TreatmentMapper treatmentMapper;
-
     AppointmentMapper appointmentMapper;
     ClientMapper clientMapper;
     TreatmentMapper treatmentMapper;
