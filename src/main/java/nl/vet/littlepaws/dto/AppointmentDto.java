@@ -22,7 +22,7 @@ public class AppointmentDto {
     @NotNull
     private long id;
     //From Appointment
-    private LocalDateTime dateAndTime;
+    private String dateAndTime;
     //From relations
     private VeterinaryPracticeDto veterinaryPracticeDto;
     private List<TreatmentDto> treatmentsDto;

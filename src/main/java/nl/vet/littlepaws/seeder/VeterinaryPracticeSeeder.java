@@ -33,5 +33,4 @@ public class VeterinaryPracticeSeeder {
             log.info("New VeterinaryPractice: "+ littlePaws.getNamePractice());
         }
     }
-    
 }

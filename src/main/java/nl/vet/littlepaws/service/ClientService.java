@@ -14,7 +14,7 @@ import java.util.Optional;
 public class ClientService implements CRUDInterface<Client> {
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
     public ClientService(){
     }
 

@@ -17,7 +17,6 @@ public class TreatmentSeeder {
 
     @Autowired
     private TreatmentRepository treatmentRepository;
-
     @Autowired
     private VeterinaryPracticeRepository veterinaryPracticeRepository;
 
@@ -35,5 +34,4 @@ public class TreatmentSeeder {
             log.info("New Treatment: "+ antibiotica.getName());
         }
     }
-
 }

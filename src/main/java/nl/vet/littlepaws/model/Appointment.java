@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Appointment extends Base {
 
-    private LocalDateTime dateAndTime;
+    private String dateAndTime;
 
     // relations:
     @ManyToOne()

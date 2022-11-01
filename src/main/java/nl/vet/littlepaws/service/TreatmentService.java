@@ -15,7 +15,7 @@ import java.util.Optional;
 public class TreatmentService implements CRUDInterface<Treatment> {
 
     @Autowired
-    TreatmentRepository treatmentRepository;
+    private TreatmentRepository treatmentRepository;
     public TreatmentService(){
     }
 

@@ -14,8 +14,8 @@ import java.util.List;
 @Component
 public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
 
-    PetMapper petMapper;
-    VeterinaryPracticeMapper veterinaryPracticeMapper;
+    private PetMapper petMapper;
+    private VeterinaryPracticeMapper veterinaryPracticeMapper;
 
     public ClientMapper(@Lazy PetMapper petMapper, @Lazy VeterinaryPracticeMapper veterinaryPracticeMapper) {
         this.petMapper = petMapper;

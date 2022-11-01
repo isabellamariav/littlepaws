@@ -10,11 +10,9 @@ import java.util.List;
 public class AppointmentMapper implements BaseMapperInterface<Appointment, AppointmentDto> {
 
 
-    TreatmentMapper treatmentMapper;
-
-    PetMapper petMapper;
-
-    VeterinaryPracticeMapper veterinaryPracticeMapper;
+    private TreatmentMapper treatmentMapper;
+    private PetMapper petMapper;
+    private VeterinaryPracticeMapper veterinaryPracticeMapper;
 
     AppointmentMapper(@Lazy TreatmentMapper treatmentMapper, @Lazy PetMapper petMapper, @Lazy VeterinaryPracticeMapper veterinaryPracticeMapper){
         this.treatmentMapper = treatmentMapper;

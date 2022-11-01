@@ -12,7 +12,7 @@ import java.util.Optional;
 public class VeterinaryPracticeService implements CRUDInterface<VeterinaryPractice>{
 
     @Autowired
-    VeterinaryPracticeRepository veterinaryPracticeRepository;
+    private VeterinaryPracticeRepository veterinaryPracticeRepository;
     public VeterinaryPracticeService(){
     }
 

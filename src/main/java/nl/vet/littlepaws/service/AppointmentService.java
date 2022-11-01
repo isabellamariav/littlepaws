@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AppointmentService implements CRUDInterface<Appointment> {
 
     @Autowired
-    AppointmentRepository appointmentRepository;
+    private AppointmentRepository appointmentRepository;
     public AppointmentService(){
     }
 

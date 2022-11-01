@@ -13,9 +13,9 @@ import java.util.List;
 @Component
 public class TreatmentMapper implements BaseMapperInterface<Treatment, TreatmentDto> {
 
-    VeterinaryPracticeMapper veterinaryPracticeMapper;
+    private VeterinaryPracticeMapper veterinaryPracticeMapper;
+    private AppointmentMapper appointmentMapper;
 
-    AppointmentMapper appointmentMapper;
     public TreatmentMapper(@Lazy VeterinaryPracticeMapper veterinaryPracticeMapper, @Lazy AppointmentMapper appointmentMapper) {
         this.veterinaryPracticeMapper = veterinaryPracticeMapper;
         this.appointmentMapper = appointmentMapper;

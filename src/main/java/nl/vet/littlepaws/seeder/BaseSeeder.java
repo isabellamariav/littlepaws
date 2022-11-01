@@ -9,11 +9,13 @@ public class BaseSeeder {
 
     @Bean
     CommandLineRunner commandLineRunner(
+            AppointmentSeeder appointmentSeeder,
             ClientSeeder clientSeeder,
             PetSeeder petseeder,
             TreatmentSeeder treatmentSeeder,
             VeterinaryPracticeSeeder veterinaryPracticeSeeder) {
         return arts -> {
+            appointmentSeeder.run();
             clientSeeder.run();
             petseeder.run();
             veterinaryPracticeSeeder.run();

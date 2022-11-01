@@ -16,7 +16,7 @@ import java.util.Optional;
 public class PetService implements CRUDInterface<Pet> {
 
     @Autowired
-    PetRepository petRepository;
+    private PetRepository petRepository;
 
     public PetService() {
     }
