@@ -6,11 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -18,7 +14,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class UserData extends Base {
+public abstract class ClientVetData extends Base {
 
     private String firstName;
     private String lastName;

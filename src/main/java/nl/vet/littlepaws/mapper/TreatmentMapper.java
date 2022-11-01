@@ -4,16 +4,25 @@ import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.TreatmentDto;
 import nl.vet.littlepaws.model.Treatment;
 import nl.vet.littlepaws.repository.TreatmentRepository;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+@Component
 public class TreatmentMapper implements BaseMapperInterface<Treatment, TreatmentDto> {
 
-    TreatmentMapper treatmentMapper;
     VeterinaryPracticeMapper veterinaryPracticeMapper;
-    TreatmentRepository treatmentRepository;
+
+    AppointmentMapper appointmentMapper;
+    public TreatmentMapper(@Lazy VeterinaryPracticeMapper veterinaryPracticeMapper, @Lazy AppointmentMapper appointmentMapper) {
+        this.veterinaryPracticeMapper = veterinaryPracticeMapper;
+        this.appointmentMapper = appointmentMapper;
+    }
+
+
+
 
     @Override
     public TreatmentDto toDto(Treatment treatment) {
@@ -25,9 +34,8 @@ public class TreatmentMapper implements BaseMapperInterface<Treatment, Treatment
                 .duration(treatment.getDuration())
                 .price(treatment.getPrice())
 
-                .treatmentsDto(treatmentMapper.toDtoList(treatment.getType()))
                 .veterinaryPracticeDto(veterinaryPracticeMapper.toDto(treatment.getVeterinaryPractice()))
-                .treatmentsDto(toDtoList(treatmentRepository.findAll()))
+                .appointmentsDto(appointmentMapper.toDtoList(treatment.getAppointments()))
 
                 .build();
     }
@@ -46,13 +54,14 @@ public class TreatmentMapper implements BaseMapperInterface<Treatment, Treatment
         return Treatment
                 .builder()
                 .id(treatmentDto.getId())
-                .type()
+                .type(treatmentDto.getType())
                 .name(treatmentDto.getName())
                 .duration(treatmentDto.getDuration())
                 .price(treatmentDto.getPrice())
 
                 .veterinaryPractice(veterinaryPracticeMapper.toEntity(treatmentDto.getVeterinaryPracticeDto()))
-                .treatments(toEntityList(treatmentRepository.findAll()))
+                .appointments(appointmentMapper.toEntityList(treatmentDto.getAppointmentsDto()))
+
                 .build();
     }
 

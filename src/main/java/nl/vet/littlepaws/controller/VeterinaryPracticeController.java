@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.VeterinaryPracticeDto;
 import nl.vet.littlepaws.mapper.VeterinaryPracticeMapper;
 import nl.vet.littlepaws.model.VeterinaryPractice;
@@ -19,22 +20,24 @@ import java.net.URI;
 public class VeterinaryPracticeController {
 
         VeterinaryPracticeService veterinaryPracticeService;
+        VeterinaryPracticeMapper veterinaryPracticeMapper;
 
-        public VeterinaryPracticeController(VeterinaryPracticeService veterinaryPracticeService) {
-            this.veterinaryPracticeService = veterinaryPracticeService;
-        }
+    public VeterinaryPracticeController(@Lazy VeterinaryPracticeService veterinaryPracticeService, @Lazy VeterinaryPracticeMapper veterinaryPracticeMapper) {
+        this.veterinaryPracticeService = veterinaryPracticeService;
+        this.veterinaryPracticeMapper = veterinaryPracticeMapper;
+    }
 
         //request type
         @GetMapping(value = "")
         public ResponseEntity<Iterable<VeterinaryPracticeDto>> getAllVeterinaryPractices() {
             Iterable<VeterinaryPractice> veterinaryPractices = veterinaryPracticeService.getAll();
-            return ResponseEntity.ok(VeterinaryPracticeMapper.toDtoList(veterinaryPractices));
+            return ResponseEntity.ok(veterinaryPracticeMapper.toDtoList(veterinaryPractices));
         }
 
         @GetMapping(value = "/{id}")
         public ResponseEntity<VeterinaryPracticeDto> getOneVeterinaryPractice(@PathVariable Long id) {
             VeterinaryPractice veterinaryPractice = veterinaryPracticeService.read(id).get();
-            return ResponseEntity.ok(VeterinaryPracticeMapper.toDto(veterinaryPractice));
+            return ResponseEntity.ok(veterinaryPracticeMapper.toDto(veterinaryPractice));
         }
 
         //update
@@ -50,7 +53,7 @@ public class VeterinaryPracticeController {
                 }
                 return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
             } else {
-                veterinaryPracticeService.update(VeterinaryPracticeMapper.toEntity(veterinaryPracticeDto), id);
+                veterinaryPracticeService.update(veterinaryPracticeMapper.toEntity(veterinaryPracticeDto), id);
                 return ResponseEntity.noContent().build();
             }
         }

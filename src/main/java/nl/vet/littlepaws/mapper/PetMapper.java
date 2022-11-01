@@ -5,15 +5,23 @@ import nl.vet.littlepaws.dto.ClientDto;
 import nl.vet.littlepaws.dto.PetDto;
 import nl.vet.littlepaws.model.Client;
 import nl.vet.littlepaws.model.Pet;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+@Component
 public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
+
 
     ClientMapper clientMapper;
     AppointmentMapper appointmentMapper;
+
+    public PetMapper(@Lazy ClientMapper clientMapper, @Lazy AppointmentMapper appointmentMapper) {
+        this.clientMapper = clientMapper;
+        this.appointmentMapper = appointmentMapper;
+    }
 
     @Override
     public PetDto toDto(Pet pet) {
@@ -27,7 +35,7 @@ public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
                 .weight(pet.getWeight())
 
                 .clientDto(clientMapper.toDto(pet.getClient()))
-                .appointmentDtos(appointmentMapper.toDto(pet.getAppointment()))
+//                .appointmentDtos(appointmentMapper.toDtoList(pet.getAppointment()))
 
                 .build();
     }
@@ -62,7 +70,7 @@ public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
     public List<Pet> toEntityList(Iterable<PetDto> petDtos) {
         List<Pet> pets = new ArrayList<>();
         for (PetDto petDto : petDtos) {
-            pets.add(toEntity(petDto))
+            pets.add(toEntity(petDto));
         }
         return pets;
     }

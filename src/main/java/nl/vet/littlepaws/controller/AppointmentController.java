@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.mapper.AppointmentMapper;
 import nl.vet.littlepaws.model.Appointment;
@@ -21,26 +22,26 @@ import java.util.List;
 @RequestMapping(value = "/appointment")
 public class AppointmentController {
 
-    AppointmentService appointmentService;
-
-    public AppointmentController(AppointmentService appointmentService) {
+    public AppointmentController(@Lazy AppointmentService appointmentService, @Lazy AppointmentMapper appointmentMapper) {
         this.appointmentService = appointmentService;
+        this.appointmentMapper = appointmentMapper;
     }
 
-    //request type
+    AppointmentService appointmentService;
+    AppointmentMapper appointmentMapper;
+
     @GetMapping(value = "")
     public ResponseEntity<Iterable<AppointmentDto>> getAllAppointments() {
         Iterable<Appointment> appointments = appointmentService.getAll();
-        return ResponseEntity.ok(AppointmentMapper.toDtoList(appointments));
+        return ResponseEntity.ok(appointmentMapper.toDtoList(appointments));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<AppointmentDto> getOneAppointment(@PathVariable Long id) {
         Appointment appointment = appointmentService.read(id).get();
-        return ResponseEntity.ok(AppointmentMapper.toDto(appointment));
+        return ResponseEntity.ok(appointmentMapper.toDto(appointment));
     }
 
-    //add
     @PostMapping(value = "")
     public ResponseEntity<Object> createAppointment(@Validated @RequestBody AppointmentDto appointmentDto, BindingResult br) {
         StringBuilder sb = new StringBuilder();
@@ -52,14 +53,13 @@ public class AppointmentController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            Appointment newAppointment = appointmentService.create(AppointmentMapper.toEntity(appointmentDto)).get();
+            Appointment newAppointment = appointmentService.create(appointmentMapper.toEntity(appointmentDto)).get();
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(newAppointment.getId()).toUri();
             return ResponseEntity.created(location).build();
         }
     }
 
-    //update
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateAppointment(@Validated @RequestBody AppointmentDto appointmentDto, @PathVariable Long id, BindingResult br){
 
@@ -72,7 +72,7 @@ public class AppointmentController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            appointmentService.update(AppointmentMapper.toEntity(appointmentDto), id);
+            appointmentService.update(appointmentMapper.toEntity(appointmentDto), id);
             return ResponseEntity.noContent().build();
         }
     }

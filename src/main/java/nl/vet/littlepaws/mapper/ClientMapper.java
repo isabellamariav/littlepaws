@@ -5,15 +5,22 @@ import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.ClientDto;
 import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.model.Client;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+@Component
 public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
 
     PetMapper petMapper;
     VeterinaryPracticeMapper veterinaryPracticeMapper;
+
+    public ClientMapper(@Lazy PetMapper petMapper, @Lazy VeterinaryPracticeMapper veterinaryPracticeMapper) {
+        this.petMapper = petMapper;
+        this.veterinaryPracticeMapper = veterinaryPracticeMapper;
+    }
 
     @Override
     public ClientDto toDto(Client client) {
@@ -29,8 +36,8 @@ public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
                 .phoneNumber(client.getPhoneNumber())
                 .email(client.getEmail())
 
-                .veterinaryPracticeDto(veterinaryPracticeMapper)
-                .petDto(petMapper.toDto(client.getPets()))
+//                .veterinaryPracticeDto(veterinaryPracticeMapper.toDto(client.getVeterinaryPractice()))
+//                .petsDto(petMapper.toDtoList(client.getPets()))
 
                 .build();
     }
@@ -58,8 +65,8 @@ public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
                 .phoneNumber(clientDto.getPhoneNumber())
                 .email(clientDto.getEmail())
 
-                .veterinaryPractice(veterinaryPracticeMapper)
-                .pet(petMapper.toEntity(clientDto.getPetDto()))
+                .veterinaryPractice(veterinaryPracticeMapper.toEntity(clientDto.getVeterinaryPracticeDto()))
+                .pets(petMapper.toEntityList(clientDto.getPetsDto()))
 
                 .build();
     }

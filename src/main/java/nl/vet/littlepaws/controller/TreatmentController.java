@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.TreatmentDto;
 import nl.vet.littlepaws.mapper.AppointmentMapper;
@@ -23,22 +24,23 @@ import java.net.URI;
 public class TreatmentController {
 
     TreatmentService treatmentService;
+    TreatmentMapper treatmentMapper;
 
-    public TreatmentController(TreatmentService treatmentService) {
+    public TreatmentController(@Lazy TreatmentService treatmentService, @Lazy TreatmentMapper treatmentMapper) {
         this.treatmentService = treatmentService;
+        this.treatmentMapper = treatmentMapper;
     }
 
-    //request type
     @GetMapping(value = "")
     public ResponseEntity<Iterable<TreatmentDto>> getAllATreatments() {
         Iterable<Treatment> treatments = treatmentService.getAll();
-        return ResponseEntity.ok(TreatmentMapper.toDtoList(treatments));
+        return ResponseEntity.ok(treatmentMapper.toDtoList(treatments));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<TreatmentDto> getOneTreatment(@PathVariable Long id) {
         Treatment treatment = treatmentService.read(id).get();
-        return ResponseEntity.ok(TreatmentMapper.toDto(treatment));
+        return ResponseEntity.ok(treatmentMapper.toDto(treatment));
     }
 
     //add
@@ -53,7 +55,7 @@ public class TreatmentController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            Treatment newTreatment = treatmentService.create(TreatmentMapper.toEntity(treatmentDto)).get();
+            Treatment newTreatment = treatmentService.create(treatmentMapper.toEntity(treatmentDto)).get();
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(newTreatment.getId()).toUri();
             return ResponseEntity.created(location).build();
@@ -73,7 +75,7 @@ public class TreatmentController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            treatmentService.update(TreatmentMapper.toEntity(treatmentDto), id);
+            treatmentService.update(treatmentMapper.toEntity(treatmentDto), id);
             return ResponseEntity.noContent().build();
         }
     }

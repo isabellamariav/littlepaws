@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.ClientDto;
 import nl.vet.littlepaws.mapper.AppointmentMapper;
@@ -23,25 +24,25 @@ import java.net.URI;
 public class ClientController {
 
     ClientService clientService;
+    ClientMapper clientMapper;
 
-    public ClientController(ClientService clientService) {
+    public ClientController(@Lazy ClientService clientService, @Lazy ClientMapper clientMapper) {
         this.clientService = clientService;
+        this.clientMapper = clientMapper;
     }
 
-    //request type
     @GetMapping(value = "")
     public ResponseEntity<Iterable<ClientDto>> getAllClients() {
         Iterable<Client> clients = clientService.getAll();
-        return ResponseEntity.ok(ClientMapper.toDtoList(clients));
+        return ResponseEntity.ok(clientMapper.toDtoList(clients));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<ClientDto> getOneClient(@PathVariable Long id) {
         Client client = clientService.read(id).get();
-        return ResponseEntity.ok(ClientMapper.toDto(client));
+        return ResponseEntity.ok(clientMapper.toDto(client));
     }
 
-    //add
     @PostMapping(value = "")
     public ResponseEntity<Object> createClient(@Validated @RequestBody ClientDto clientDto, BindingResult br) {
         StringBuilder sb = new StringBuilder();
@@ -53,14 +54,13 @@ public class ClientController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            Client newClient = clientService.create(ClientMapper.toEntity(clientDto)).get();
+            Client newClient = clientService.create(clientMapper.toEntity(clientDto)).get();
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(newClient.getId()).toUri();
             return ResponseEntity.created(location).build();
         }
     }
 
-    //update
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateClient(@Validated @RequestBody ClientDto clientDto, @PathVariable Long id, BindingResult br){
 
@@ -73,7 +73,7 @@ public class ClientController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            clientService.update(ClientMapper.toEntity(clientDto), id);
+            clientService.update(clientMapper.toEntity(clientDto), id);
             return ResponseEntity.noContent().build();
         }
     }

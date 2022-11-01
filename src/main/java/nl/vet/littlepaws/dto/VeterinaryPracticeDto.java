@@ -33,7 +33,7 @@ public class VeterinaryPracticeDto {
     private String email;
 
     //from the relations
-    private AppointmentDto appointmentDto;
-    private ClientDto clientDto;
-    private TreatmentDto treatmentDto;
+    private List<AppointmentDto> appointmentsDto;
+    private List<ClientDto> clientsDto;
+    private List<TreatmentDto> treatmentsDto;
 }

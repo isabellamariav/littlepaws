@@ -3,10 +3,7 @@ package nl.vet.littlepaws.dto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.*;
-import nl.vet.littlepaws.model.Pet;
-import nl.vet.littlepaws.model.Treatment;
-import nl.vet.littlepaws.model.TreatmentType;
-import nl.vet.littlepaws.model.VeterinaryPractice;
+import nl.vet.littlepaws.model.*;
 
 import java.util.List;
 
@@ -26,5 +23,5 @@ public class TreatmentDto {
 
     @JsonBackReference
     private VeterinaryPracticeDto veterinaryPracticeDto;
-    private List<TreatmentDto> treatmentsDto;
+    private List<AppointmentDto> appointmentsDto;
 }

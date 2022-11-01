@@ -31,5 +31,5 @@ public class ClientDto {
     private String email;
 
     private VeterinaryPracticeDto veterinaryPracticeDto;
-    private PetDto petDto;
+    private List<PetDto> petsDto;
 }

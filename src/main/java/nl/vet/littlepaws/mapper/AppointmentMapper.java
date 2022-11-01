@@ -6,9 +6,21 @@ import nl.vet.littlepaws.model.Appointment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppointmentMapper {
-    //aggregator/mapper Dto - Entity
-    public static AppointmentDto toDto(Appointment appointment) {
+@Component
+public class AppointmentMapper implements BaseMapperInterface<Appointment, AppointmentDto> {
+
+
+    TreatmentMapper treatmentMapper;
+
+    PetMapper petMapper;
+
+    VeterinaryPracticeMapper veterinaryPracticeMapper;
+
+    AppointmentMapper(@Lazy TreatmentMapper treatmentMapper, @Lazy PetMapper petMapper, @Lazy VeterinaryPracticeMapper veterinaryPracticeMapper){
+        this.treatmentMapper = treatmentMapper;
+        this.petMapper = petMapper;
+        this.veterinaryPracticeMapper = veterinaryPracticeMapper;
+    }
 
         AppointmentDto appointmentDto = AppointmentDto.builder()
                 .id(appointment.getId()).build();

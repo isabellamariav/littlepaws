@@ -24,6 +24,6 @@ public class Treatment extends Base {
     @ManyToOne(fetch = FetchType.EAGER)
     private VeterinaryPractice veterinaryPractice;
 
-    @ManyToMany(mappedBy = "treatment")
+    @ManyToMany(mappedBy = "treatments")
     private List<Appointment> appointments;
 }

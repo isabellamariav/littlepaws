@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.PetDto;
 import nl.vet.littlepaws.mapper.AppointmentMapper;
@@ -23,22 +24,23 @@ import java.net.URI;
 public class PetController {
 
     PetService petService;
+    PetMapper petMapper;
 
-    public PetController(PetService petService) {
+    public PetController(@Lazy PetService petService, @Lazy PetMapper petMapper) {
         this.petService = petService;
+        this.petMapper = petMapper;
     }
 
-    //request type
     @GetMapping(value = "")
     public ResponseEntity<Iterable<PetDto>> getAllPets() {
         Iterable<Pet> pets = petService.getAll();
-        return ResponseEntity.ok(PetMapper.toDtoList(pets));
+        return ResponseEntity.ok(petMapper.toDtoList(pets));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<PetDto> getOnePet(@PathVariable Long id) {
         Pet pet = petService.read(id).get();
-        return ResponseEntity.ok(PetMapper.toDto(pet));
+        return ResponseEntity.ok(petMapper.toDto(pet));
     }
 
     //add
@@ -53,7 +55,7 @@ public class PetController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            Pet newPet = petService.create(PetMapper.toEntity(petDto)).get();
+            Pet newPet = petService.create(petMapper.toEntity(petDto)).get();
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(newPet.getId()).toUri();
             return ResponseEntity.created(location).build();
@@ -73,7 +75,7 @@ public class PetController {
             }
             return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
         } else {
-            petService.update(PetMapper.toEntity(petDto), id);
+            petService.update(petMapper.toEntity(petDto), id);
             return ResponseEntity.noContent().build();
         }
     }
