@@ -20,12 +20,12 @@ public class VeterinaryPracticeSeeder {
             VeterinaryPractice littlePaws = VeterinaryPractice
                     .builder()
                     .namePractice("Little Paws")
-                    .address("Papegaaienlaan 10")
-                    .postalCode("3500 AB")
-                    .city("Utrecht")
-                    .email("littlepaws@veterinarypractice.com")
-                    .firstName("Anne")
-                    .lastName("Kattenmens")
+                    .address("Kattenlaan 1")
+                    .postalCode("2221 AA")
+                    .city("Katwijk aan Zee")
+                    .email("vet@littlepaws.com")
+                    .firstName("Ben")
+                    .lastName("Gaal")
                     .phoneNumber(0512123456)
                     .emergencyPhoneNumber(0512654321)
                     .build();

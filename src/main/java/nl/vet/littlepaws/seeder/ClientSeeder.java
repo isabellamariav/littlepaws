@@ -20,16 +20,16 @@ public class ClientSeeder {
     private ClientRepository clientRepository;
 
     public void run() {
-        if (clientRepository.findByLastName("Dierenmens").isEmpty()) {
+        if (clientRepository.findByLastName("Bermann").isEmpty()) {
             Client dierenmens = Client
                     .builder()
-                    .firstName("Bart")
-                    .lastName("Dierenmens")
+                    .firstName("Do")
+                    .lastName("Bermann")
                     .dateOfBirth(LocalDate.parse("1989-03-16"))
-                    .address("Hondenlaan 60")
-                    .postalCode("3500 XD")
-                    .city("Utrecht")
-                    .email("bartdierenmens@gmail.com")
+                    .address("Hondenlaan 10")
+                    .postalCode("2221 AA")
+                    .city("Kat aan Zee")
+                    .email("dobermann@gmail.com")
                     .phoneNumber(0611111111)
                     .build();
             clientRepository.save(dierenmens);

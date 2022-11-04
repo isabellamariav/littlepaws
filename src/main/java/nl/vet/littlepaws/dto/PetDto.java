@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 import nl.vet.littlepaws.model.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -19,7 +20,7 @@ public class PetDto {
     private String name;
     private String typeOfAnimal;
     private char gender;
-    private int age;
+    private LocalDate dateOfBirth;
     private double weight;
     //From relations
     private ClientDto clientDto;

@@ -4,7 +4,9 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -15,7 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Appointment extends Base {
 
-    private String dateAndTime;
+    private LocalDate date;
+    private LocalTime time;
 
     // relations:
     @ManyToOne()

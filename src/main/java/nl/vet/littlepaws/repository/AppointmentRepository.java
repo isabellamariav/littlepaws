@@ -6,9 +6,10 @@ import nl.vet.littlepaws.service.CRUDInterface;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
 
-    Optional<Appointment> findById(String dateAndTime);
+    Optional<Appointment> findById(long id);
 }

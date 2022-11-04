@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Configuration
@@ -34,9 +35,9 @@ public class PetSeeder {
                     .name("Chester")
                     .typeOfAnimal("Dog")
                     .gender('M')
-                    .age(3)
+                    .dateOfBirth(LocalDate.parse("2015-01-05"))
                     .weight(7)
-                    .client(clientRepository.findByLastName("Dierenmens").get())
+                    .client(clientRepository.findByLastName("Bermann").get())
 //                    .appointment((List<Appointment>) appointmentRepository.findById(5L).get())
                     .build();
             petRepository.save(chester);

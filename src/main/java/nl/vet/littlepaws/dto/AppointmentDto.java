@@ -9,7 +9,9 @@ import nl.vet.littlepaws.model.VeterinaryPractice;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -22,7 +24,8 @@ public class AppointmentDto {
     @NotNull
     private long id;
     //From Appointment
-    private String dateAndTime;
+    private LocalDate date;
+    private LocalTime time;
     //From relations
     private VeterinaryPracticeDto veterinaryPracticeDto;
     private List<TreatmentDto> treatmentsDto;

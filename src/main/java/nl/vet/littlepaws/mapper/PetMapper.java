@@ -31,7 +31,7 @@ public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
                 .name(pet.getName())
                 .typeOfAnimal(pet.getTypeOfAnimal())
                 .gender(pet.getGender())
-                .age(pet.getAge())
+                .dateOfBirth(pet.getDateOfBirth())
                 .weight(pet.getWeight())
 
                 .clientDto(clientMapper.toDto(pet.getClient()))
@@ -57,7 +57,7 @@ public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
                 .name(petDto.getName())
                 .typeOfAnimal(petDto.getTypeOfAnimal())
                 .gender(petDto.getGender())
-                .age(petDto.getAge())
+                .dateOfBirth(petDto.getDateOfBirth())
                 .weight(petDto.getWeight())
 
                 .client(clientMapper.toEntity(petDto.getClientDto()))

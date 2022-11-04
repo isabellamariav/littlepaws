@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Configuration
 @Component
@@ -19,17 +21,19 @@ public class AppointmentSeeder {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+    @Autowired
     private PetRepository petRepository;
 
     public void run() {
         if (appointmentRepository.findById(5L).isEmpty()) {
             Appointment chesterDierenmens = Appointment
                     .builder()
-                    .dateAndTime("2022-11-06 23-59-59")
+                    .date(LocalDate.parse("2023-01-05"))
+                    .time(LocalTime.parse("13:00"))
 //                    .pet(petRepository.findByName("Chester").get())
                     .build();
             appointmentRepository.save(chesterDierenmens);
-//            log.info("New Appointment: " + chesterDierenmens.getId());
+            log.info("New Appointment: " + chesterDierenmens.getId());
         }
     }
 }

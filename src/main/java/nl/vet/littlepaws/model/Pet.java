@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Pet extends Base {
     private String name;
     private String typeOfAnimal;
     private char gender;
-    private int age;
+    private LocalDate dateOfBirth;;
     private double weight;
 
     // relations;
