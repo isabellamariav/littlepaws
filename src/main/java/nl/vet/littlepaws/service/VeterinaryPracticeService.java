@@ -32,8 +32,8 @@ public class VeterinaryPracticeService implements CRUDInterface<VeterinaryPracti
     }
 
     @Override
-    public void delete(VeterinaryPractice dto) {
-        veterinaryPracticeRepository.delete(dto);
+    public void delete(long id) {
+        veterinaryPracticeRepository.deleteById(id);
     }
 
     @Override

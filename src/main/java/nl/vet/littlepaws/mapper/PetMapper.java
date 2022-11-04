@@ -35,7 +35,6 @@ public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
                 .weight(pet.getWeight())
 
                 .clientDto(clientMapper.toDto(pet.getClient()))
-//                .appointmentDtos(appointmentMapper.toDtoList(pet.getAppointment()))
 
                 .build();
     }
@@ -61,7 +60,6 @@ public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
                 .weight(petDto.getWeight())
 
                 .client(clientMapper.toEntity(petDto.getClientDto()))
-                .appointment(appointmentMapper.toEntityList(petDto.getAppointmentDtos()))
 
                 .build();
     }

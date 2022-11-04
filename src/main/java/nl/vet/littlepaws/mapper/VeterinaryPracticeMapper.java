@@ -70,8 +70,12 @@ public class VeterinaryPracticeMapper implements BaseMapperInterface<VeterinaryP
     }
 
     @Override
-    public List<VeterinaryPractice> toEntityList(Iterable<VeterinaryPracticeDto> veterinaryPracticeDtos) {
-        return null;
+    public List<VeterinaryPractice> toEntityList (Iterable<VeterinaryPracticeDto> veterinaryPracticeDtos) {
+        List<VeterinaryPractice> veterinaryPractices = new ArrayList<>();
+        for (VeterinaryPracticeDto veterinaryPracticeDto : veterinaryPracticeDtos) {
+            veterinaryPractices.add(toEntity(veterinaryPracticeDto));
+        }
+        return veterinaryPractices;
     }
 
 }

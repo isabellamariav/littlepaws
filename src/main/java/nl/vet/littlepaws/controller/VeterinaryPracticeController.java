@@ -57,6 +57,4 @@ public class VeterinaryPracticeController {
                 return ResponseEntity.noContent().build();
             }
         }
-
-        private String test;
 }

@@ -77,6 +77,8 @@ public class ClientController {
             return ResponseEntity.noContent().build();
         }
     }
-
-    private String test;
+    @DeleteMapping(value = "/{id}")
+    public void deleteTreatment(@PathVariable Long id) {
+        clientService.delete(id);
+    }
 }

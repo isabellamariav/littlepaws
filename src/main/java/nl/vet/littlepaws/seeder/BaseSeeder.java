@@ -15,11 +15,19 @@ public class BaseSeeder {
             TreatmentSeeder treatmentSeeder,
             VeterinaryPracticeSeeder veterinaryPracticeSeeder) {
         return arts -> {
-            appointmentSeeder.run();
             clientSeeder.run();
             petseeder.run();
+
             veterinaryPracticeSeeder.run();
-            treatmentSeeder.run();
-        } ;
+
+            try {
+                Appointment appointment = appointmentRepository.findById(3L).get();
+                appointment.setPet(petRepository.findByName("Chester").get());
+                appointment.setVeterinaryPractice(veterinaryPracticeRepository.findByNamePractice("Little Paws").get());
+                appointmentRepository.save(appointment);
+            }catch(Exception e){
+                System.out.println("[Seeder] - Failed to attach data to appointment: " + e.getMessage());
+            }
+        };
     }
 }

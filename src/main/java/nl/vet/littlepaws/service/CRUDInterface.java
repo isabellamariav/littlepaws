@@ -10,6 +10,6 @@ public interface CRUDInterface<T>{
     Optional<T> create(T entity);
     Optional<T> read(Long id);
     Optional<T> update(T entity, Long id);
-    void delete(T entity);
+    void delete(long id);
     Iterable<T> getAll();
 }

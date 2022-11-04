@@ -1,5 +1,7 @@
 package nl.vet.littlepaws.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.*;
 import nl.vet.littlepaws.model.Pet;
@@ -27,7 +29,7 @@ public class AppointmentDto {
     private LocalDate date;
     private LocalTime time;
     //From relations
-    private VeterinaryPracticeDto veterinaryPracticeDto;
+    @JsonManagedReference
     private List<TreatmentDto> treatmentsDto;
     private PetDto petDto;
 }

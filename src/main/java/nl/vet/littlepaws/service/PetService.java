@@ -37,8 +37,8 @@ public class PetService implements CRUDInterface<Pet> {
     }
 
     @Override
-    public void delete(Pet dto) {
-        petRepository.delete(dto);
+    public void delete(long id) {
+        petRepository.deleteById(id);
     }
 
     @Override

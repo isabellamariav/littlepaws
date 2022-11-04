@@ -37,8 +37,8 @@ public class TreatmentService implements CRUDInterface<Treatment> {
     }
 
     @Override
-    public void delete(Treatment dto) {
-        treatmentRepository.delete(dto);
+    public void delete(long id) {
+        treatmentRepository.deleteById(id);
     }
 
     @Override

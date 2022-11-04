@@ -37,8 +37,8 @@ public class AppointmentService implements CRUDInterface<Appointment> {
         return Optional.of(appointmentRepository.save(updateAppointment));
     }
     @Override
-    public void delete(Appointment dto) {
-        appointmentRepository.delete(dto);
+    public void delete(long id) {
+        appointmentRepository.deleteById(id);
     }
 
     @Override

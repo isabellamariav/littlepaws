@@ -27,7 +27,6 @@ public class TreatmentSeeder {
                     .name("Antibiotica")
                     .price(40)
                     .type(TreatmentType.medication)
-                    .veterinaryPractice(veterinaryPracticeRepository.findByNamePractice("Little Paws").get())
                     .duration(10)
                     .build();
             treatmentRepository.save(antibiotica);

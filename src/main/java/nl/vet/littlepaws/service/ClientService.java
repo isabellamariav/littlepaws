@@ -36,8 +36,8 @@ public class ClientService implements CRUDInterface<Client> {
         return Optional.of(clientRepository.save(updateClient));
     }
     @Override
-    public void delete(Client dto) {
-        clientRepository.delete(dto);
+    public void delete(long id) {
+        clientRepository.deleteById(id);
     }
 
     @Override

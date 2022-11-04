@@ -21,9 +21,6 @@ public class TreatmentMapper implements BaseMapperInterface<Treatment, Treatment
         this.appointmentMapper = appointmentMapper;
     }
 
-
-
-
     @Override
     public TreatmentDto toDto(Treatment treatment) {
         return TreatmentDto
@@ -33,9 +30,6 @@ public class TreatmentMapper implements BaseMapperInterface<Treatment, Treatment
                 .name(treatment.getName())
                 .duration(treatment.getDuration())
                 .price(treatment.getPrice())
-
-                .veterinaryPracticeDto(veterinaryPracticeMapper.toDto(treatment.getVeterinaryPractice()))
-                .appointmentsDto(appointmentMapper.toDtoList(treatment.getAppointments()))
 
                 .build();
     }
@@ -58,9 +52,6 @@ public class TreatmentMapper implements BaseMapperInterface<Treatment, Treatment
                 .name(treatmentDto.getName())
                 .duration(treatmentDto.getDuration())
                 .price(treatmentDto.getPrice())
-
-                .veterinaryPractice(veterinaryPracticeMapper.toEntity(treatmentDto.getVeterinaryPracticeDto()))
-                .appointments(appointmentMapper.toEntityList(treatmentDto.getAppointmentsDto()))
 
                 .build();
     }

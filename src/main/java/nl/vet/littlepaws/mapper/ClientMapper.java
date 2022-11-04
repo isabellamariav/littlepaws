@@ -36,9 +36,6 @@ public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
                 .phoneNumber(client.getPhoneNumber())
                 .email(client.getEmail())
 
-//                .veterinaryPracticeDto(veterinaryPracticeMapper.toDto(client.getVeterinaryPractice()))
-//                .petsDto(petMapper.toDtoList(client.getPets()))
-
                 .build();
     }
 
@@ -64,9 +61,6 @@ public class ClientMapper implements BaseMapperInterface<Client, ClientDto> {
                 .city(clientDto.getCity())
                 .phoneNumber(clientDto.getPhoneNumber())
                 .email(clientDto.getEmail())
-
-                .veterinaryPractice(veterinaryPracticeMapper.toEntity(clientDto.getVeterinaryPracticeDto()))
-                .pets(petMapper.toEntityList(clientDto.getPetsDto()))
 
                 .build();
     }

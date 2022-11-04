@@ -76,6 +76,8 @@ public class AppointmentController {
             return ResponseEntity.noContent().build();
         }
     }
-
-    private String test;
+    @DeleteMapping(value = "/{id}")
+    public void deleteTreatment(@PathVariable Long id) {
+        appointmentService.delete(id);
+    }
 }

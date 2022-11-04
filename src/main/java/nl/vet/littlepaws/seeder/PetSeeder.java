@@ -38,7 +38,7 @@ public class PetSeeder {
                     .dateOfBirth(LocalDate.parse("2015-01-05"))
                     .weight(7)
                     .client(clientRepository.findByLastName("Bermann").get())
-//                    .appointment((List<Appointment>) appointmentRepository.findById(5L).get())
+                    .appointment(null)
                     .build();
             petRepository.save(chester);
             log.info("New Pet: "+ chester.getName());

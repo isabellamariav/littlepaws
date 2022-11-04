@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sun.istack.NotNull;
 import lombok.*;
 import nl.vet.littlepaws.model.Appointment;
@@ -30,6 +31,6 @@ public class ClientDto {
     private int phoneNumber;
     private String email;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private VeterinaryPracticeDto veterinaryPracticeDto;
-    private List<PetDto> petsDto;
 }

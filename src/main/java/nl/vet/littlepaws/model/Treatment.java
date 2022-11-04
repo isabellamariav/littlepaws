@@ -1,5 +1,7 @@
 package nl.vet.littlepaws.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -25,5 +27,7 @@ public class Treatment extends Base {
     private VeterinaryPractice veterinaryPractice;
 
     @ManyToMany(mappedBy = "treatments")
+    @JsonBackReference
+    @JsonIgnore
     private List<Appointment> appointments;
 }
