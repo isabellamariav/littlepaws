@@ -14,7 +14,6 @@ import java.util.List;
 @Component
 public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
 
-
     private ClientMapper clientMapper;
     private AppointmentMapper appointmentMapper;
 
