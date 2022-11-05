@@ -24,6 +24,7 @@ public class VeterinaryPracticeDto {
     private int emergencyPhoneNumber;
 
     //from the UserData
+    private String personalTitle;
     private String firstName;
     private String lastName;
     private String address;

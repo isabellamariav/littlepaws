@@ -23,6 +23,7 @@ public class ClientDto {
 
     private LocalDate dateOfBirth;
 
+    private String personalTitle;
     private String firstName;
     private String lastName;
     private String address;

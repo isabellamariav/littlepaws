@@ -21,8 +21,9 @@ public class ClientSeeder {
 
     public void run() {
         if (clientRepository.findByLastName("Bermann").isEmpty()) {
-            Client dierenmens = Client
+            Client bermann = Client
                     .builder()
+                    .personalTitle("mevrouw")
                     .firstName("Do")
                     .lastName("Bermann")
                     .dateOfBirth(LocalDate.parse("1989-03-16"))
@@ -32,8 +33,8 @@ public class ClientSeeder {
                     .email("dobermann@gmail.com")
                     .phoneNumber(0611111111)
                     .build();
-            clientRepository.save(dierenmens);
-            log.info("New Client: "+ dierenmens.getLastName());
+            clientRepository.save(bermann);
+            log.info("New Client: "+ bermann.getLastName());
         }
     }
 }

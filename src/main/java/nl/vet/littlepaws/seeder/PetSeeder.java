@@ -34,6 +34,7 @@ public class PetSeeder {
                     .builder()
                     .name("Chester")
                     .typeOfAnimal("Dog")
+                    .breed("Dobermann")
                     .gender('M')
                     .dateOfBirth(LocalDate.parse("2015-01-05"))
                     .weight(7)

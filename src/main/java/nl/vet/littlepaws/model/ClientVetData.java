@@ -16,6 +16,7 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor
 public abstract class ClientVetData extends Base {
 
+    private String personalTitle;
     private String firstName;
     private String lastName;
     private String address;

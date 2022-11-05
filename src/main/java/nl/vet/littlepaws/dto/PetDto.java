@@ -19,6 +19,7 @@ public class PetDto {
     //From Pet
     private String name;
     private String typeOfAnimal;
+    private String breed;
     private char gender;
     private LocalDate dateOfBirth;
     private double weight;

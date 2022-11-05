@@ -24,6 +24,7 @@ public class VeterinaryPracticeSeeder {
                     .postalCode("2221 AA")
                     .city("Katwijk aan Zee")
                     .email("vet@littlepaws.com")
+                    .personalTitle("Dokter")
                     .firstName("Ben")
                     .lastName("Gaal")
                     .phoneNumber(0512123456)
