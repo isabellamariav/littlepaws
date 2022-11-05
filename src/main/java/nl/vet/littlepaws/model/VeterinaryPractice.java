@@ -4,8 +4,6 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -15,7 +13,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VeterinaryPractice extends UserData {
+public class VeterinaryPractice extends ClientVetData {
 
     private String namePractice;
     private int emergencyPhoneNumber;

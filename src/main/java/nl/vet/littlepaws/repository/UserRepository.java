@@ -1,4 +1,4 @@
-package nl.vet.littlepaws.repository;
-
-public interface UserRepository { //?????????????????
-}
+//package nl.vet.littlepaws.repository;
+//
+//public class UserRepository {
+//}

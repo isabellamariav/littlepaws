@@ -13,7 +13,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Client extends UserData {
+public class Client extends ClientVetData {
 
     private LocalDate dateOfBirth;
 
