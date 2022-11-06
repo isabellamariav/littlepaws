@@ -14,6 +14,8 @@ import java.util.Set;
 @Builder
 public class UserDto {
 
+
+
     @NotNull
     private long id;
     public String username;
