@@ -33,7 +33,6 @@ public class AppointmentSeeder {
         if (appointmentRepository.findById(3L).isEmpty()) {
             Appointment chesterDierenmens = Appointment
                     .builder()
-                    .id(3L)
                     .date(LocalDate.parse("2023-01-05"))
                     .time(LocalTime.parse("13:00"))
                     .treatments(List.of(treatmentRepository.findByName("Antibiotica").get()))

@@ -15,11 +15,9 @@ import java.util.List;
 public class PetMapper implements BaseMapperInterface<Pet, PetDto> {
 
     private ClientMapper clientMapper;
-    private AppointmentMapper appointmentMapper;
 
     public PetMapper(@Lazy ClientMapper clientMapper, @Lazy AppointmentMapper appointmentMapper) {
         this.clientMapper = clientMapper;
-        this.appointmentMapper = appointmentMapper;
     }
 
     @Override

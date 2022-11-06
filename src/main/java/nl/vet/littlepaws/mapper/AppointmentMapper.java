@@ -18,12 +18,10 @@ public class AppointmentMapper implements BaseMapperInterface<Appointment, Appoi
 
     private TreatmentMapper treatmentMapper;
     private PetMapper petMapper;
-    private VeterinaryPracticeMapper veterinaryPracticeMapper;
 
     AppointmentMapper(@Lazy TreatmentMapper treatmentMapper, @Lazy PetMapper petMapper, @Lazy VeterinaryPracticeMapper veterinaryPracticeMapper){
         this.treatmentMapper = treatmentMapper;
         this.petMapper = petMapper;
-        this.veterinaryPracticeMapper = veterinaryPracticeMapper;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class AppointmentMapper implements BaseMapperInterface<Appointment, Appoi
                 .time(appointment.getTime())
 
                 .treatmentsDto(treatmentMapper.toDtoList(appointment.getTreatments()))
-                .petDto(petMapper.toDto(appointment.getPet()))
+//                .petDto(petMapper.toDto(appointment.getPet()))
 
                 .build();
     }
@@ -57,8 +55,8 @@ public class AppointmentMapper implements BaseMapperInterface<Appointment, Appoi
                 .date(appointmentDto.getDate())
                 .time(appointmentDto.getTime())
 
-                .pet(petMapper.toEntity(appointmentDto.getPetDto()))
                 .treatments(treatmentMapper.toEntityList(appointmentDto.getTreatmentsDto()))
+                .pet(petMapper.toEntity(appointmentDto.getPetDto()))
 
                 .build();
     }
