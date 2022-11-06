@@ -1,5 +1,10 @@
 package nl.vet.littlepaws.seeder;
 
+import nl.vet.littlepaws.model.Appointment;
+import nl.vet.littlepaws.repository.AppointmentRepository;
+import nl.vet.littlepaws.repository.PetRepository;
+import nl.vet.littlepaws.repository.VeterinaryPracticeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,21 +12,24 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BaseSeeder {
 
+    @Autowired
+    PetRepository petRepository;
+    @Autowired
+    AppointmentRepository appointmentRepository;
+    @Autowired
+    VeterinaryPracticeRepository veterinaryPracticeRepository;
+
     @Bean
     CommandLineRunner commandLineRunner(
             AppointmentSeeder appointmentSeeder,
             ClientSeeder clientSeeder,
             PetSeeder petseeder,
-            RoleUserSeeder roleUserSeeder,
-            RoleAdminSeeder roleAdminSeeder,
             TreatmentSeeder treatmentSeeder,
-            UserSeeder userSeeder,
             VeterinaryPracticeSeeder veterinaryPracticeSeeder) {
         return arts -> {
-            userSeeder.run();
-            roleUserSeeder.run();
-            roleAdminSeeder.run();
             clientSeeder.run();
+            treatmentSeeder.run();
+            appointmentSeeder.run();
             petseeder.run();
 
             veterinaryPracticeSeeder.run();

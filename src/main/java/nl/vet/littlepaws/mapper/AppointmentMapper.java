@@ -1,7 +1,13 @@
 package nl.vet.littlepaws.mapper;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
+import nl.vet.littlepaws.dto.ClientDto;
+import nl.vet.littlepaws.dto.VeterinaryPracticeDto;
 import nl.vet.littlepaws.model.Appointment;
+import nl.vet.littlepaws.model.Client;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,30 +26,48 @@ public class AppointmentMapper implements BaseMapperInterface<Appointment, Appoi
         this.veterinaryPracticeMapper = veterinaryPracticeMapper;
     }
 
-        AppointmentDto appointmentDto = AppointmentDto.builder()
-                .id(appointment.getId()).build();
-        return appointmentDto;
+    @Override
+    public AppointmentDto toDto(Appointment appointment) {
+        return AppointmentDto
+                .builder()
+                .id(appointment.getId())
+                .date(appointment.getDate())
+                .time(appointment.getTime())
+
+                .treatmentsDto(treatmentMapper.toDtoList(appointment.getTreatments()))
+                .petDto(petMapper.toDto(appointment.getPet()))
+
+                .build();
     }
 
-    public static List<AppointmentDto> toDtoList(Iterable<Appointment> appointments) {
-        List<AppointmentDto> appointmentDtos = new ArrayList<>();
+    @Override
+    public List<AppointmentDto> toDtoList(Iterable<Appointment> appointments) {
+        List<AppointmentDto> appointmentsDto = new ArrayList<>();
         for (Appointment appointment : appointments) {
-            appointmentDtos.add(AppointmentMapper.toDto(appointment));
+            appointmentsDto.add(toDto(appointment));
         }
-        return appointmentDtos;
+        return appointmentsDto;
     }
 
-    public static Appointment toEntity(AppointmentDto appointmentDto) {
+    @Override
+    public Appointment toEntity(AppointmentDto appointmentDto) {
+        return Appointment
+                .builder()
+                .id(appointmentDto.getId())
+                .date(appointmentDto.getDate())
+                .time(appointmentDto.getTime())
 
-        Appointment appointment = Appointment.builder()
-                .id(appointmentDto.getId()).build();
-        return appointment;
+                .pet(petMapper.toEntity(appointmentDto.getPetDto()))
+                .treatments(treatmentMapper.toEntityList(appointmentDto.getTreatmentsDto()))
+
+                .build();
     }
 
-    public static List<Appointment> toEntityList(Iterable<AppointmentDto> appointmentDtos) {
+    @Override
+    public List<Appointment> toEntityList(Iterable<AppointmentDto> appointmentDtos) {
         List<Appointment> appointments = new ArrayList<>();
         for (AppointmentDto appointmentDto : appointmentDtos) {
-            appointments.add(AppointmentMapper.toEntity(appointmentDto));
+            appointments.add(toEntity(appointmentDto));
         }
         return appointments;
     }

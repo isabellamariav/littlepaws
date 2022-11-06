@@ -31,5 +31,6 @@ public class AppointmentDto {
     //From relations
     @JsonManagedReference
     private List<TreatmentDto> treatmentsDto;
+    
     private PetDto petDto;
 }

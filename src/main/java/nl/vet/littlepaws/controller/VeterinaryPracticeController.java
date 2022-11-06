@@ -5,6 +5,7 @@ import nl.vet.littlepaws.dto.VeterinaryPracticeDto;
 import nl.vet.littlepaws.mapper.VeterinaryPracticeMapper;
 import nl.vet.littlepaws.model.VeterinaryPractice;
 import nl.vet.littlepaws.service.VeterinaryPracticeService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

@@ -5,6 +5,7 @@ import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.mapper.AppointmentMapper;
 import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.service.AppointmentService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
