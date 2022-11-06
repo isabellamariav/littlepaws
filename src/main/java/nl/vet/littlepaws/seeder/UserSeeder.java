@@ -5,6 +5,8 @@ import nl.vet.littlepaws.model.User;
 import nl.vet.littlepaws.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -16,13 +18,17 @@ public class UserSeeder {
     @Autowired
     private UserRepository userRepository;
 
+    private PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
     public void run() {
 
         if (userRepository.findByUsername("Henkie").isEmpty()) {
             User user = User
                     .builder()
                     .username("henkie")
-                    .password("konijn")
+                    .password(passwordEncoder().encode("konijn"))
                     .enabled(true)
                     .email("henkie@gmail.com")
                     .build();
