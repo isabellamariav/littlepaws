@@ -1,5 +1,7 @@
 package nl.vet.littlepaws.service;
 
+import nl.vet.littlepaws.dto.UserDto;
+import nl.vet.littlepaws.exception.UsernameNotFoundException;
 import nl.vet.littlepaws.model.User;
 import nl.vet.littlepaws.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

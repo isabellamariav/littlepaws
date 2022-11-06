@@ -3,6 +3,7 @@ package nl.vet.littlepaws.mapper;
 import nl.vet.littlepaws.dto.PetDto;
 import nl.vet.littlepaws.dto.UserDto;
 import nl.vet.littlepaws.model.Pet;
+import nl.vet.littlepaws.model.RoleTypes;
 import nl.vet.littlepaws.model.User;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,6 @@ import java.util.List;
 
 @Component
 public class UserMapper implements BaseMapperInterface<User, UserDto> {
-
 
     @Override
     public UserDto toDto(User user) {

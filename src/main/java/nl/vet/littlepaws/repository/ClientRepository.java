@@ -4,9 +4,11 @@ import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.model.Client;
 import nl.vet.littlepaws.model.VeterinaryPractice;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
 
     Optional<Client> findByLastName(String lastName);

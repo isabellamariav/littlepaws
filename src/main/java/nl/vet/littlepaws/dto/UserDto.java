@@ -1,8 +1,9 @@
 package nl.vet.littlepaws.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sun.istack.NotNull;
 import lombok.*;
-import nl.vet.littlepaws.model.Authority;
+import nl.vet.littlepaws.model.Role;
 
 import java.util.Set;
 
@@ -13,10 +14,12 @@ import java.util.Set;
 @Builder
 public class UserDto {
 
+    @NotNull
+    private long id;
     public String username;
     public String password;
     public Boolean enabled;
     public String email;
     @JsonSerialize
-    public Set<Authority> authorities;
+    public Set<Role> roles;
 }
