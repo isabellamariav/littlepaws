@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.seeder;
 
+import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.repository.AppointmentRepository;
 import nl.vet.littlepaws.repository.PetRepository;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@AllArgsConstructor
 public class BaseSeeder {
 
     AppointmentRepository appointmentRepository;

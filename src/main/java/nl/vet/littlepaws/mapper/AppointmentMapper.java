@@ -33,7 +33,7 @@ public class AppointmentMapper implements BaseMapperInterface<Appointment, Appoi
                 .time(appointment.getTime())
 
                 .treatmentsDto(treatmentMapper.toDtoList(appointment.getTreatments()))
-//                .petDto(petMapper.toDto(appointment.getPet()))
+                .petDto(petMapper.toDto(appointment.getPet()))
 
                 .build();
     }
