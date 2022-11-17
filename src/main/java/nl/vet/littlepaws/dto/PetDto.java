@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
 import nl.vet.littlepaws.model.*;
@@ -25,5 +26,4 @@ public class PetDto {
     private double weight;
     //From relations
     private ClientDto clientDto;
-    private List<AppointmentDto> appointmentDtos;
 }

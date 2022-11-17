@@ -25,7 +25,7 @@ public class Appointment extends Base {
     private VeterinaryPractice veterinaryPractice;
 
     @ManyToMany()
-    private List<Treatment> treatment;
+    private List<Treatment> treatments;
 
     @ManyToOne()
     private Pet pet;

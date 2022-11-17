@@ -1,20 +1,24 @@
 package nl.vet.littlepaws.mapper;
 
 import lombok.AllArgsConstructor;
+import nl.vet.littlepaws.dto.ClientDto;
 import nl.vet.littlepaws.dto.VeterinaryPracticeDto;
 import nl.vet.littlepaws.model.Base;
+import nl.vet.littlepaws.model.Client;
 import nl.vet.littlepaws.model.VeterinaryPractice;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class VeterinaryPracticeMapper implements BaseMapperInterface<VeterinaryPractice, VeterinaryPracticeDto> {
 
-    AppointmentMapper appointmentMapper;
-    ClientMapper clientMapper;
-    TreatmentMapper treatmentMapper;
+
+    private AppointmentMapper appointmentMapper;
+    private ClientMapper clientMapper;
+    private TreatmentMapper treatmentMapper;
 
     public VeterinaryPracticeMapper(@Lazy AppointmentMapper appointmentMapper, @Lazy ClientMapper clientMapper, @Lazy TreatmentMapper treatmentMapper) {
         this.appointmentMapper = appointmentMapper;
@@ -46,7 +50,11 @@ public class VeterinaryPracticeMapper implements BaseMapperInterface<VeterinaryP
 
     @Override
     public List<VeterinaryPracticeDto> toDtoList(Iterable<VeterinaryPractice> veterinaryPractices) {
-        return null;
+        List<VeterinaryPracticeDto> veterinaryPracticeDtos = new ArrayList<>();
+        for (VeterinaryPractice veterinaryPractice : veterinaryPractices) {
+            veterinaryPracticeDtos.add(toDto(veterinaryPractice));
+        }
+        return veterinaryPracticeDtos;
     }
 
     @Override

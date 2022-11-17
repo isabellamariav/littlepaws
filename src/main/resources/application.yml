@@ -1,4 +1,8 @@
+server:
+  port: 6060
 spring:
+  main:
+    allow-circular-references: true
   jpa:
     show-sql: true
     generate-ddl: true
@@ -18,3 +22,8 @@ spring:
 springdoc:
   swagger-ui:
     path: /docs.html
+
+vet:
+  app:
+    jwtSecret: verySecretKey
+    jwtExpirationMs: 86400000

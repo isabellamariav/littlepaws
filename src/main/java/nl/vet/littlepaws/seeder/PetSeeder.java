@@ -25,8 +25,6 @@ public class PetSeeder {
     private PetRepository petRepository;
     @Autowired
     private ClientRepository clientRepository;
-    @Autowired
-    private AppointmentRepository appointmentRepository;
 
     public void run() {
         if (petRepository.findByName("Chester").isEmpty()) {

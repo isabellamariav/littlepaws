@@ -10,4 +10,4 @@ The configuration can be changed in the resources folder in file application.yml
 ## API Docs
 API Documentation with openAPI and swagger.
 
-Rest api docs can be found on [localhost:7070/docs.html](localhost:7070/docs.html) 
+Rest api docs can be found on [localhost:6060/docs.html](localhost:7070/docs.html) 

@@ -9,6 +9,7 @@ import nl.vet.littlepaws.model.Appointment;
 import nl.vet.littlepaws.model.Pet;
 import nl.vet.littlepaws.service.AppointmentService;
 import nl.vet.littlepaws.service.PetService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
