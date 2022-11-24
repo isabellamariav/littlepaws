@@ -1,17 +1,19 @@
-package nl.vet.littlepaws.service;
+package nl.vet.littlepaws.security.services;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import nl.vet.littlepaws.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
 
-public class UserDetailsImpl implements UserDetails {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class UserDetailsImplementation implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private Long id;

@@ -1,16 +1,17 @@
-package nl.vet.littlepaws.service;
+package nl.vet.littlepaws.security.services;
 
-import nl.vet.littlepaws.exception.UsernameNotFoundException;
 import nl.vet.littlepaws.model.User;
 import nl.vet.littlepaws.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImplementation implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
@@ -20,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        return UserDetailsImpl.build(user);
+        return UserDetailsImplementation.build(user);
     }
 
 }

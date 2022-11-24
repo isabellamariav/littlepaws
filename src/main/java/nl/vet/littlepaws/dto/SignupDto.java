@@ -1,6 +1,5 @@
-package nl.vet.littlepaws.security;
+package nl.vet.littlepaws.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class SingUpRequest {
+public class SignupDto {
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;
@@ -27,4 +25,5 @@ public class SingUpRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+
 }
