@@ -37,20 +37,21 @@ public class PetController {
     }
 
     @GetMapping(value = "")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Iterable<PetDto>> getAllPets() {
         Iterable<Pet> pets = petService.getAll();
         return ResponseEntity.ok(petMapper.toDtoList(pets));
     }
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<PetDto> getOnePet(@PathVariable Long id) {
         Pet pet = petService.read(id).get();
         return ResponseEntity.ok(petMapper.toDto(pet));
     }
 
-    //add
     @PostMapping(value = "")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Object> createPet(@Validated @RequestBody PetDto petDto, BindingResult br) {
         StringBuilder sb = new StringBuilder();
         if (br.hasErrors()) {
@@ -68,8 +69,8 @@ public class PetController {
         }
     }
 
-    //update
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Object> updatePet(@Validated @RequestBody PetDto petDto, @PathVariable Long id, BindingResult br){
 
         StringBuilder sb = new StringBuilder();
@@ -86,6 +87,7 @@ public class PetController {
         }
     }
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public void deleteTreatment(@PathVariable Long id) {
         petService.delete(id);
     }

@@ -37,19 +37,21 @@ public class ClientController {
     }
 
     @GetMapping(value = "")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Iterable<ClientDto>> getAllClients() {
         Iterable<Client> clients = clientService.getAll();
         return ResponseEntity.ok(clientMapper.toDtoList(clients));
     }
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<ClientDto> getOneClient(@PathVariable Long id) {
         Client client = clientService.read(id).get();
         return ResponseEntity.ok(clientMapper.toDto(client));
     }
 
     @PostMapping(value = "")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Object> createClient(@Validated @RequestBody ClientDto clientDto, BindingResult br) {
         StringBuilder sb = new StringBuilder();
         if (br.hasErrors()) {
@@ -68,6 +70,7 @@ public class ClientController {
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Object> updateClient(@Validated @RequestBody ClientDto clientDto, @PathVariable Long id, BindingResult br){
 
         StringBuilder sb = new StringBuilder();
@@ -84,6 +87,7 @@ public class ClientController {
         }
     }
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public void deleteTreatment(@PathVariable Long id) {
         clientService.delete(id);
     }

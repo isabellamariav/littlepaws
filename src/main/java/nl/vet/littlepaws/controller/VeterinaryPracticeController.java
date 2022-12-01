@@ -33,19 +33,21 @@ public class VeterinaryPracticeController {
     }
 
         @GetMapping(value = "")
-        @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+        @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
         public ResponseEntity<Iterable<VeterinaryPracticeDto>> getAllVeterinaryPractices() {
             Iterable<VeterinaryPractice> veterinaryPractices = veterinaryPracticeService.getAll();
             return ResponseEntity.ok(veterinaryPracticeMapper.toDtoList(veterinaryPractices));
         }
 
         @GetMapping(value = "/{id}")
+        @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
         public ResponseEntity<VeterinaryPracticeDto> getOneVeterinaryPractice(@PathVariable Long id) {
             VeterinaryPractice veterinaryPractice = veterinaryPracticeService.read(id).get();
             return ResponseEntity.ok(veterinaryPracticeMapper.toDto(veterinaryPractice));
         }
 
         @PutMapping(value = "/{id}")
+        @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
         public ResponseEntity<Object> updateVeterinaryPractice(@Validated @RequestBody VeterinaryPracticeDto veterinaryPracticeDto, @PathVariable Long id, BindingResult br){
 
             StringBuilder sb = new StringBuilder();

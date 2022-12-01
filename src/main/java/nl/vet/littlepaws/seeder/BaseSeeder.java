@@ -22,12 +22,11 @@ public class BaseSeeder {
             AppointmentSeeder appointmentSeeder,
             ClientSeeder clientSeeder,
             PetSeeder petseeder,
+            RoleSeeder roleSeeder,
             TreatmentSeeder treatmentSeeder,
             VeterinaryPracticeSeeder veterinaryPracticeSeeder) {
         return arts -> {
-//            userSeeder.run();
-//            roleUserSeeder.run();
-//            roleAdminSeeder.run();
+            roleSeeder.run();
             clientSeeder.run();
             treatmentSeeder.run();
             appointmentSeeder.run();

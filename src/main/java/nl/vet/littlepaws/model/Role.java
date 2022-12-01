@@ -1,8 +1,15 @@
 package nl.vet.littlepaws.model;
 
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
 @Table(name = "roles")
 public class Role {
     @Id

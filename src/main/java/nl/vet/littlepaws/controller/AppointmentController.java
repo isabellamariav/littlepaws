@@ -36,19 +36,21 @@ public class AppointmentController {
     AppointmentMapper appointmentMapper;
 
     @GetMapping(value = "")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Iterable<AppointmentDto>> getAllAppointments() {
         Iterable<Appointment> appointments = appointmentService.getAll();
         return ResponseEntity.ok(appointmentMapper.toDtoList(appointments));
     }
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<AppointmentDto> getOneAppointment(@PathVariable Long id) {
         Appointment appointment = appointmentService.read(id).get();
         return ResponseEntity.ok(appointmentMapper.toDto(appointment));
     }
 
     @PostMapping(value = "")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Object> createAppointment(@Validated @RequestBody AppointmentDto appointmentDto, BindingResult br) {
         StringBuilder sb = new StringBuilder();
         if (br.hasErrors()) {
@@ -67,6 +69,7 @@ public class AppointmentController {
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public ResponseEntity<Object> updateAppointment(@Validated @RequestBody AppointmentDto appointmentDto, @PathVariable Long id, BindingResult br){
 
         StringBuilder sb = new StringBuilder();
@@ -83,6 +86,7 @@ public class AppointmentController {
         }
     }
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     public void deleteTreatment(@PathVariable Long id) {
         appointmentService.delete(id);
     }

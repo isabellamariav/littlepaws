@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -23,5 +24,6 @@ public abstract class ClientVetData extends Base {
     private String postalCode;
     private String city;
     private int phoneNumber;
+    @Email
     private String email;
 }

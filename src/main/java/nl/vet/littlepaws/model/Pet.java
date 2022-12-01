@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Pet extends Base {
 
+    @NotNull @Unique
     private String name;
     private String typeOfAnimal;
     private String breed;
