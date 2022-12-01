@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.mapper.AppointmentMapper;
@@ -8,6 +9,7 @@ import nl.vet.littlepaws.service.AppointmentService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping(value = "/appointment")
 public class AppointmentController {
@@ -32,6 +36,7 @@ public class AppointmentController {
     AppointmentMapper appointmentMapper;
 
     @GetMapping(value = "")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Iterable<AppointmentDto>> getAllAppointments() {
         Iterable<Appointment> appointments = appointmentService.getAll();
         return ResponseEntity.ok(appointmentMapper.toDtoList(appointments));

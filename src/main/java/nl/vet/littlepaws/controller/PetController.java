@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.AppointmentDto;
 import nl.vet.littlepaws.dto.PetDto;
@@ -12,6 +13,7 @@ import nl.vet.littlepaws.service.PetService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping(value = "/pet")
 public class PetController {
@@ -33,6 +37,7 @@ public class PetController {
     }
 
     @GetMapping(value = "")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Iterable<PetDto>> getAllPets() {
         Iterable<Pet> pets = petService.getAll();
         return ResponseEntity.ok(petMapper.toDtoList(pets));

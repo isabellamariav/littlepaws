@@ -32,7 +32,6 @@ public class VeterinaryPracticeController {
         this.veterinaryPracticeMapper = veterinaryPracticeMapper;
     }
 
-        //request type
         @GetMapping(value = "")
         @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
         public ResponseEntity<Iterable<VeterinaryPracticeDto>> getAllVeterinaryPractices() {
@@ -46,7 +45,6 @@ public class VeterinaryPracticeController {
             return ResponseEntity.ok(veterinaryPracticeMapper.toDto(veterinaryPractice));
         }
 
-        //update
         @PutMapping(value = "/{id}")
         public ResponseEntity<Object> updateVeterinaryPractice(@Validated @RequestBody VeterinaryPracticeDto veterinaryPracticeDto, @PathVariable Long id, BindingResult br){
 
