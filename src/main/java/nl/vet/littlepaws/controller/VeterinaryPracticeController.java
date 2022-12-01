@@ -1,5 +1,6 @@
 package nl.vet.littlepaws.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import nl.vet.littlepaws.dto.VeterinaryPracticeDto;
 import nl.vet.littlepaws.mapper.VeterinaryPracticeMapper;
@@ -8,6 +9,7 @@ import nl.vet.littlepaws.service.VeterinaryPracticeService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping(value = "/veterinarypractice")
 public class VeterinaryPracticeController {
@@ -30,6 +34,7 @@ public class VeterinaryPracticeController {
 
         //request type
         @GetMapping(value = "")
+        @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
         public ResponseEntity<Iterable<VeterinaryPracticeDto>> getAllVeterinaryPractices() {
             Iterable<VeterinaryPractice> veterinaryPractices = veterinaryPracticeService.getAll();
             return ResponseEntity.ok(veterinaryPracticeMapper.toDtoList(veterinaryPractices));

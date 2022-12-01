@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface TreatmentRepository extends CrudRepository<Treatment, Long> {
 
     Optional<Treatment> findByName(String name);
+
+
 }
