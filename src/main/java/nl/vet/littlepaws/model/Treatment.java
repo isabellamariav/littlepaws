@@ -6,6 +6,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -18,8 +20,14 @@ public class Treatment extends Base {
 
     @Enumerated(EnumType.ORDINAL)
     private TreatmentType type;
+
+    @NotBlank(message = "Name cannot be blank. ")
     private String name;
+
+    @NotBlank(message = "Duration cannot be blank. Please enter the amount of minutes. ")
+    @Min(5)
     private int duration;
+
     private double price;
 
     // relation:

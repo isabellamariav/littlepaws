@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Client extends ClientVetData {
 
+    @NotBlank(message = "Date of Birth cannot be blank. ")
+    @Past(message = "Date of Birth must be in the past. ")
     private LocalDate dateOfBirth;
 
     // relations:
