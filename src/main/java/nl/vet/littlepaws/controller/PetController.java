@@ -70,7 +70,7 @@ public class PetController {
     }
 
     @PutMapping(value = "/{id}")
-    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
+    @PreAuthorize("hasRole('VET')")
     public ResponseEntity<Object> updatePet(@Validated @RequestBody PetDto petDto, @PathVariable Long id, BindingResult br){
 
         StringBuilder sb = new StringBuilder();
