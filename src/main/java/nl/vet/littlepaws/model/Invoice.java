@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @AllArgsConstructor
-public class FileInfo {
+public class Invoice {
 
     @NotNull(message = "Name of the file cannot be null. ")
     private String name;

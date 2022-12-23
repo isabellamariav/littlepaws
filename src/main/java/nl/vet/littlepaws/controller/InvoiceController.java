@@ -5,16 +5,15 @@ import java.util.stream.Collectors;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
-import nl.vet.littlepaws.model.FileInfo;
+import nl.vet.littlepaws.model.Invoice;
 import nl.vet.littlepaws.model.ResponseMessage;
-import nl.vet.littlepaws.service.FilesStorageService;
+import nl.vet.littlepaws.service.InvoiceStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
@@ -24,10 +23,10 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 @RestController
 @RequestMapping(value = "/file")
 @Slf4j
-public class FileController {
+public class InvoiceController {
 
     @Autowired
-    FilesStorageService storageService;
+    InvoiceStorageService storageService;
 
     @PostMapping(path = "/upload", consumes = {"application/json", "multipart/form-data"})
     @PreAuthorize("hasRole('VET')")
@@ -48,16 +47,16 @@ public class FileController {
 
     @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
     @GetMapping("/files")
-    public ResponseEntity<List<FileInfo>> getListFiles() {
-        List<FileInfo> fileInfos = storageService.loadAll().map(path -> {
+    public ResponseEntity<List<Invoice>> getListFiles() {
+        List<Invoice> invoices = storageService.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder
-                    .fromMethodName(FileController.class, "getFile", path.getFileName().toString()).build().toString();
+                    .fromMethodName(InvoiceController.class, "getFile", path.getFileName().toString()).build().toString();
 
-            return new FileInfo(filename, url);
+            return new Invoice(filename, url);
         }).collect(Collectors.toList());
 
-        return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
+        return ResponseEntity.status(HttpStatus.OK).body(invoices);
     }
 
     @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")

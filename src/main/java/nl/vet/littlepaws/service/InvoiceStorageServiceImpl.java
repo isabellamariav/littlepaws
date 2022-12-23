@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Slf4j
-public class FilesStorageServiceImpl implements FilesStorageService {
+public class InvoiceStorageServiceImpl implements InvoiceStorageService {
 
     private final Path root = Paths.get("uploads");
 
