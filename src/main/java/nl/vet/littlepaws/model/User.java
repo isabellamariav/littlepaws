@@ -3,6 +3,7 @@ package nl.vet.littlepaws.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,17 +19,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 20)
+    @NotBlank(message = "Username cannot be blank. ")
+    @Pattern(regexp = "^[a-zA-Z0-9]{5,20}$",
+            message = "username must have between 5 and 20 characters with no special characters. ")
     private String username;
 
-    @NotBlank
-    @Size(max = 50)
-    @Email
+    @NotBlank(message = "Email cannot be blank. ")
+    @Size(max = 50, message = "Email must be under 50 characters. ")
+    @Email(message="Please provide a valid email address. ")
     private String email;
 
-    @NotBlank
-    @Size(max = 120)
+    @NotBlank(message = "Password cannot be blank. ")
+    @Pattern(regexp = "^((?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])){8,20}$",
+            message = "password must have between 8 and 20 characters and must contain atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit. ")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
