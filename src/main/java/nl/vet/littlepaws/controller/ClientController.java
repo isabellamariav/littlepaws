@@ -70,7 +70,7 @@ public class ClientController {
     }
 
     @PutMapping(value = "/{id}")
-    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
+    @PreAuthorize("hasRole('VET')")
     public ResponseEntity<Object> updateClient(@Validated @RequestBody ClientDto clientDto, @PathVariable Long id, BindingResult br){
 
         StringBuilder sb = new StringBuilder();
@@ -87,7 +87,7 @@ public class ClientController {
         }
     }
     @DeleteMapping(value = "/{id}")
-    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
+    @PreAuthorize("hasRole('VET')")
     public void deleteTreatment(@PathVariable Long id) {
         clientService.delete(id);
     }

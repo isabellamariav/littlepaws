@@ -87,7 +87,7 @@ public class PetController {
         }
     }
     @DeleteMapping(value = "/{id}")
-    @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
+    @PreAuthorize("hasRole('VET')")
     public void deleteTreatment(@PathVariable Long id) {
         petService.delete(id);
     }

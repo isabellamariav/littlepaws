@@ -47,7 +47,7 @@ public class VeterinaryPracticeController {
         }
 
         @PutMapping(value = "/{id}")
-        @PreAuthorize("hasRole('CLIENT') or hasRole('VET')")
+        @PreAuthorize("hasRole('VET')")
         public ResponseEntity<Object> updateVeterinaryPractice(@Validated @RequestBody VeterinaryPracticeDto veterinaryPracticeDto, @PathVariable Long id, BindingResult br){
 
             StringBuilder sb = new StringBuilder();
